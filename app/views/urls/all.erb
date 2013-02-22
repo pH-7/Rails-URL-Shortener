@@ -1,0 +1,14 @@
+<h3><%= link_to 'Add new URL to shorten', new_url_path %></h3>
+
+<% if !@urls.empty? %>
+  <h1>List of recent URLs which have been shortened</h1>
+  <ul>
+    <% @urls.sort{|a,b| b.created_at <=> a.created_at }.each do |url| %>
+      <li><%= url.created_at.strftime("%b %m, %Y") %> &nbsp;-&nbsp; <strong><%= url.url %></strong> via <strong><a href="<%= url_url(url.id) %>" rel="nofollow" target="_blank"><%= url.url %></a></strong> <em>(<%= url.nb_access %> access)</em></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>Be the first one to shorten your URL!</h2>
+<% end %>
+
+

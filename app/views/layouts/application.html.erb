@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <meta name="description" content="Online service to shorten your long URLs" />
+  <meta name="keywords" content="short URL, URL, bitly, awesome, save, share, shorten" />
+  <meta name="author" content="Pierre-Henry Soria" />
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="container">
+        <header><h1>pH7</h1></header>
+            <nav id="top">
+                <ul>
+                    <li><%= link_to 'Home', root_path %></li>
+                    <li><%= link_to 'Shorten URL', new_url_path %></li>
+                    <li><%= link_to 'Contact Us',  contact_index_path %></li>
+                </ul>
+            </nav>
+
+            <section class="content">
+                <% if flash[:url_id].present? %>
+                    <p>The shortened URL is available at <%= link_to url_url(flash[:url_id]), url_url(flash[:url_id]) %>.</p>
+                <% end %>
+            <%= yield %>
+
+        <footer>
+            <p>By <strong><a href="http://ph-7.github.com">pH7</a></strong> &copy; <span id="copyrightYear"></span>.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Retrieve the current date to the copyright
+        document.getElementById('copyrightYear').innerHTML=(new Date).getFullYear();
+    </script>
+</body>
+</html>

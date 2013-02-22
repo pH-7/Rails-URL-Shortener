@@ -1,0 +1,15 @@
+<h1>Add a new URL</h1>
+<%= form_for @urls do |form| %>
+  <p>
+    <%= form.label :url, "Your URL:" %>
+    <%= form.text_field :url %>
+  </p>
+  <% if @urls.errors[:url].any? %>
+    <p class='error-messages'>
+      The given url <%= @urls.errors[:url].to_sentence %>.
+    </p>
+  <% end %>
+  <p class='buttons'>
+    <%= form.submit "Shorten URL!" %>
+  </p>
+<% end %>
