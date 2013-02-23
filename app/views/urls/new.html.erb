@@ -2,7 +2,7 @@
 <%= form_for @urls do |form| %>
   <p>
     <%= form.label :url, "Your URL:" %>
-    <%= form.text_field :url %>
+    <%= form.url_field :url, :placeholder => 'Paste a link to shorten it', :autocomplete=> 'off', :required => 'required' %>
   </p>
   <% if @urls.errors[:url].any? %>
     <p class='error-messages'>
